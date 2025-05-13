@@ -1,58 +1,35 @@
-# Assignment 1
-
-class Person:
-    def __init__(self, name, age, role):
+# Base class
+class Superhero:
+    def __init__(self, name, power, universe):
         self.name = name
-        self.age = age
-        self.role = role
+        self.power = power
+        self.universe = universe
+        self.__identity = "Secret"  # Encapsulation: private attribute
 
-class Student(Person):
-    def __init__(self, name, age, role, level, programme):
-        super().__init__(name, age, role)
-        self.level = level
-        self.programme = programme
+    def reveal_identity(self):
+        return f"{self.name}'s identity is {self.__identity}."
 
+    def set_identity(self, real_name):
+        self.__identity = real_name
 
-    def change_programme(self, new_programme):
-        self.programme = new_programme
+    def display_power(self):
+        return f"{self.name} uses {self.power}!"
 
+# Subclass
+class FlyingHero(Superhero):
+    def __init__(self, name, power, universe, flight_speed):
+        super().__init__(name, power, universe)
+        self.flight_speed = flight_speed
 
-    def display_details(self):
-        return f"{self.name} is {self.age} and is a {self.role}. \n {self.name} is in level {self.level} and offers {self.programme}"
+    def display_power(self):
+        return f"{self.name} flies at {self.flight_speed} km/h using {self.power}!"
 
+# Create objects
+hero1 = Superhero("ShadowStrike", "Invisibility", "DarkVerse")
+hero1.set_identity("Liam Fox")
 
+hero2 = FlyingHero("SkyBlaze", "Fire Wings", "AeroVerse", 900)
 
-class Lecturer(Person):
-    def __init__(self, name, age, role, department):
-        super().__init__(name, age, role)
-        self.department = department
-        self.courses = []
-
-
-    def add_course(self, course):
-        self.courses.append(course)
-
-
-    def remove_course(self, course):
-        self.courses.remove(course)
-
-
-    def display_details(self):
-            if len(self.courses) == 0:
-                course_info = f"{self.name} is not assigned any course yet."
-            else:
-                course_info = f"{self.name} teaches {self.courses}"
-                return f"{self.name} is {self.age} and is a {self.role}. \n {course_info}"
-            
-
-student1 = Student("John Doe", 20, "Student", 200, "Computer Science")
-lecturer1 = Lecturer("Dr. Smith", 45, "Professor", "Computer Science Department")
-lecturer1.add_course("Computer Architecture")
-lecturer1.add_course("Data Structures")
-
-print(student1.display_details())
-print(lecturer1.display_details())
-
-
-
-
+print(hero1.display_power())
+print(hero1.reveal_identity())
+print(hero2.display_power())

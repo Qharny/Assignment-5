@@ -1,47 +1,24 @@
-# Polymorphism Challenge
-
-class Animal:
-    def __init__(self, name, age):
-        self.name = name
-        self.age = age
-
-
-class Mammal(Animal):
-    def __init__(self, name, age, color):
-        super().__init__(name, age)
-        self.color = color
-
+# Base class
+class Vehicle:
     def move(self):
-        return f"{self.name} moves by running."
-    
-    
+        print("Vehicle is moving...")
 
-class Bird(Animal):
-    def __init__(self, name, age, beak_type):
-        super().__init__(name, age)
-        self.beak_type = beak_type
-        
-
+# Subclasses with different implementations
+class Car(Vehicle):
     def move(self):
-        return f"{self.name} moves by flying."
-        
+        print("Driving 🚗")
 
-class Fish(Animal):
-    def __init__(self, name, age, water_type):
-        super().__init__(name, age)
-        self.water_type = water_type
-        
-
+class Plane(Vehicle):
     def move(self):
-        return f"{self.name} moves by swimming."    
-    
+        print("Flying ✈️")
 
-lion = Mammal("Lion", 5, "Golden")
-eagle = Bird("Eagle", 3, "Hooked")
-salmon = Fish("Salmon", 2, "Freshwater")
+class Boat(Vehicle):
+    def move(self):
+        print("Sailing 🚢")
 
-animals = [lion, eagle, salmon]
+# Create a list of different vehicles
+vehicles = [Car(), Plane(), Boat()]
 
-
-for animal in animals:
-    print(animal.move())
+# Demonstrate polymorphism
+for v in vehicles:
+    v.move()
